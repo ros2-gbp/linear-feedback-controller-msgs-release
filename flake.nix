@@ -2,12 +2,9 @@
   description = "ROS messages which correspond to the loco-3d/linear-feedback-controller package.";
 
   inputs = {
-    gazebros2nix.url = "github:gepetto/gazebros2nix";
-    flake-parts.follows = "gazebros2nix/flake-parts";
-    nixpkgs.follows = "gazebros2nix/nixpkgs";
-    nix-ros-overlay.follows = "gazebros2nix/nix-ros-overlay";
-    systems.follows = "gazebros2nix/systems";
-    treefmt-nix.follows = "gazebros2nix/treefmt-nix";
+    gepetto.url = "github:gepetto/nix";
+    flake-parts.follows = "gepetto/flake-parts";
+    systems.follows = "gepetto/systems";
   };
 
   outputs =
@@ -17,9 +14,9 @@
       {
         systems = import inputs.systems;
         imports = [
-          inputs.gazebros2nix.flakeModule
+          inputs.gepetto.flakeModule
           {
-            gazebros2nix.rosOverrides.linear-feedback-controller-msgs = _final: _ros-final: {
+            flakoboros.rosOverrideAttrs.linear-feedback-controller-msgs = _: _: {
               src = lib.fileset.toSource {
                 root = ./.;
                 fileset = lib.fileset.unions [
