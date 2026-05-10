@@ -1,3 +1,26 @@
+## linear_feedback_controller_msgs (jazzy) - 1.2.2-2
+
+The packages in the `linear_feedback_controller_msgs` repository were released into the `jazzy` distro by running `/nix/store/yr02v08v8dzvm5cbhvlbag590psbayxw-python3.13-bloom-0.14.3/bin/bloom-release -r jazzy linear_feedback_controller_msgs` on `Sun, 10 May 2026 13:43:17 -0000`
+
+The `linear_feedback_controller_msgs` package was released.
+
+Version of package(s) in repository `linear_feedback_controller_msgs`:
+
+- upstream repository: https://github.com/loco-3d/linear-feedback-controller-msgs.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `1.2.2-1`
+- new version: `1.2.2-2`
+
+Versions of tools used:
+
+- bloom version: `0.14.3`
+- catkin_pkg version: `1.1.0`
+- rosdep version: `0.25.1`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## linear_feedback_controller_msgs (humble) - 1.2.2-2
 
 The packages in the `linear_feedback_controller_msgs` repository were released into the `humble` distro by running `/nix/store/yr02v08v8dzvm5cbhvlbag590psbayxw-python3.13-bloom-0.14.3/bin/bloom-release -r humble linear_feedback_controller_msgs` on `Sun, 10 May 2026 13:41:00 -0000`
