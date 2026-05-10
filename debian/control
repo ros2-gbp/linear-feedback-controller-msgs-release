@@ -1,0 +1,12 @@
+Source: ros-jazzy-linear-feedback-controller-msgs
+Section: misc
+Priority: optional
+Maintainer: "Guilhem Saurel" <guilhem.saurel@laas.fr>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, ros-jazzy-ament-cmake, ros-jazzy-ament-cmake-cppcheck <!nocheck>, ros-jazzy-ament-cmake-cpplint <!nocheck>, ros-jazzy-ament-cmake-flake8 <!nocheck>, ros-jazzy-ament-cmake-gtest <!nocheck>, ros-jazzy-ament-cmake-pep257 <!nocheck>, ros-jazzy-ament-cmake-pytest <!nocheck>, ros-jazzy-ament-cmake-uncrustify <!nocheck>, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-builtin-interfaces, ros-jazzy-geometry-msgs, ros-jazzy-jrl-cmakemodules, ros-jazzy-rosidl-default-generators, ros-jazzy-sensor-msgs, ros-jazzy-std-msgs, ros-jazzy-tf2-eigen, ros-jazzy-ros-workspace, ros-jazzy-rosidl-typesupport-fastrtps-c, ros-jazzy-rosidl-typesupport-fastrtps-cpp
+Homepage: https://github.com/loco-3d/linear-feedback-controller-msgs
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-linear-feedback-controller-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libeigen3-dev, ros-jazzy-builtin-interfaces, ros-jazzy-geometry-msgs, ros-jazzy-rosidl-default-runtime, ros-jazzy-sensor-msgs, ros-jazzy-std-msgs, ros-jazzy-tf2-eigen, ros-jazzy-ros-workspace
+Description: ROS msgs that interface the linear_feedback_controller package.
