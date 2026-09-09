@@ -1,12 +1,11 @@
-#!/usr/bin/env python
+from copy import deepcopy
 
 import numpy as np
-from copy import deepcopy
-from rclpy.time import Time
 from builtin_interfaces.msg import Time as TimeMsg
+from rclpy.time import Time
 
+from linear_feedback_controller_msgs_py import lfc_py_types
 from linear_feedback_controller_msgs_py import numpy_conversions as npc
-import linear_feedback_controller_msgs_py.lfc_py_types as lfc_py_types
 
 
 def test_check_numpy_constructors() -> None:
@@ -125,6 +124,9 @@ def test_check_ros_numpy_control_conversion() -> None:
     quat = np.random.rand(4)
     quat = quat / np.linalg.norm(quat)
 
+    next_quat = np.random.rand(4)
+    next_quat = next_quat / np.linalg.norm(next_quat)
+
     numpy_control = lfc_py_types.Control(
         initial_state=lfc_py_types.Sensor(
             base_pose=np.concatenate((np.random.rand(3), quat)),
@@ -138,6 +140,20 @@ def test_check_ros_numpy_control_conversion() -> None:
             contacts=[],
             stamp=Time.from_msg(TimeMsg(sec=np.random.randint(0, 100))),
         ),
+        next_states=[
+            lfc_py_types.Sensor(
+                base_pose=np.concatenate((np.random.rand(3), next_quat)),
+                base_twist=np.random.rand(6),
+                joint_state=lfc_py_types.JointState(
+                    name=["1", "2", "3", "4", "5", "6"],
+                    position=np.random.rand(6),
+                    velocity=np.random.rand(6),
+                    effort=np.random.rand(6),
+                ),
+                contacts=[],
+                stamp=Time.from_msg(TimeMsg(sec=np.random.randint(0, 100))),
+            )
+        ],
         feedback_gain=np.random.rand(8, 4),
         feedforward=np.random.rand(4),
         stamp=Time.from_msg(TimeMsg(sec=np.random.randint(0, 100))),
@@ -208,6 +224,45 @@ def test_check_ros_numpy_control_conversion() -> None:
         numpy_control.initial_state.stamp
         == back_converted_numpy_control.initial_state.stamp
     ), "Control initial state stamp conversion failed."
+
+    assert (
+        len(back_converted_numpy_control.next_states)
+        == len(numpy_control.next_states)
+        == 1
+    ), "next_states length after conversion back to Numpy is not equal initial value!"
+
+    np.testing.assert_array_equal(
+        numpy_control.next_states[0].joint_state.position,
+        back_converted_numpy_control.next_states[0].joint_state.position,
+        err_msg="next_states[0] joint state position after conversion back to "
+        + "Numpy is not equal initial values!",
+    )
+
+    np.testing.assert_array_equal(
+        numpy_control.next_states[0].joint_state.velocity,
+        back_converted_numpy_control.next_states[0].joint_state.velocity,
+        err_msg="next_states[0] joint state velocity after conversion back to "
+        + "Numpy is not equal initial values!",
+    )
+
+    assert (
+        numpy_control.next_states[0].stamp
+        == back_converted_numpy_control.next_states[0].stamp
+    ), "next_states[0] stamp conversion failed."
+
+    # Empty next_states (default / not used) must round-trip to an empty list,
+    # not None -- this is the common case (no interpolation target provided).
+    empty_control = lfc_py_types.Control(
+        initial_state=numpy_control.initial_state,
+        feedback_gain=numpy_control.feedback_gain,
+        feedforward=numpy_control.feedforward,
+    )
+    back_converted_empty = npc.control_msg_to_numpy(
+        npc.control_numpy_to_msg(empty_control)
+    )
+    assert back_converted_empty.next_states == [], (
+        "Empty next_states must round-trip to an empty list."
+    )
 
 
 def test_check_ros_numpy_sensor_conversions() -> None:
