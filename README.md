@@ -1,3 +1,26 @@
+## linear_feedback_controller_msgs (lyrical) - 1.3.0-1
+
+The packages in the `linear_feedback_controller_msgs` repository were released into the `lyrical` distro by running `/nix/store/f47hmxl2kpyiw632j430f6g3marx0yn9-python3.14-bloom-0.14.3/bin/bloom-release -r lyrical -y linear_feedback_controller_msgs` on `Wed, 09 Sep 2026 11:59:26 -0000`
+
+The `linear_feedback_controller_msgs` package was released.
+
+Version of package(s) in repository `linear_feedback_controller_msgs`:
+
+- upstream repository: https://github.com/loco-3d/linear-feedback-controller-msgs.git
+- release repository: https://github.com/ros2-gbp/linear-feedback-controller-msgs-release.git
+- rosdistro version: `1.2.2-3`
+- old version: `1.2.2-3`
+- new version: `1.3.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.14.3`
+- catkin_pkg version: `1.1.0`
+- rosdep version: `0.25.1`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## linear_feedback_controller_msgs (kilted) - 1.3.0-1
 
 The packages in the `linear_feedback_controller_msgs` repository were released into the `kilted` distro by running `/nix/store/f47hmxl2kpyiw632j430f6g3marx0yn9-python3.14-bloom-0.14.3/bin/bloom-release -r kilted -y linear_feedback_controller_msgs` on `Wed, 09 Sep 2026 11:58:07 -0000`
